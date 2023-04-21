@@ -25,9 +25,17 @@ What are it's Cons?
 - since it spins up a new instance of an AI for every time it writes a file, it can have problems of the different AIs not knowing exactly what the other one did (we are talking with 3 or more files but depends on the request)
 
 Example:
+
 The objective is: create a python program that gives the current time as output
 since it's a simple task it achieves it really easely and reliably
 ![image](https://user-images.githubusercontent.com/28029553/233624483-d468fab9-c3d2-4ca7-9bf0-db41d44168e7.png)
+
+How do i run it?
+1. clone the repository
+2. open the .env.example file and put in your OpenAi key 
+3. in the same file also decide and objective and write it in the OBJECTIVE line
+4. save it and change it's name to just .env
+5. run a Terminal instance in the same directory as the repository and write "python hgpt.py" to run it
 
 Credits:
 BabyAgi: https://github.com/yoheinakajima/babyagi i basically took their code, stripped it down completely and built it up like i wanted to achieve my objective
