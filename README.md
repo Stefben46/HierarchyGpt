@@ -34,7 +34,7 @@ since it's a simple task it achieves it really easely and reliably
 
 ## How do i run it?
 1. clone the repository
-2. open the .env.example file and put in your OpenAi key 
+2. open the example.env file and put in your OpenAi key 
 3. in the same file also decide and objective and write it in the OBJECTIVE line
 4. save it and change it's name to just .env
 5. run a Terminal instance in the same directory as the repository and write "python hgpt.py" to run it
