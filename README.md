@@ -43,4 +43,4 @@ since it's a simple task it achieves it really easely and reliably
 
 BabyAgi: https://github.com/yoheinakajima/babyagi i started from their code, stripped it down completely and built it up like i wanted, to achieve my objective
 
-AutoGpt: https://github.com/Significant-Gravitas/Auto-GPT i started with my porject because if wanted an autogpt with a different structure
+AutoGpt: https://github.com/Significant-Gravitas/Auto-GPT i started with my poroject because if wanted an autogpt with a different structure
