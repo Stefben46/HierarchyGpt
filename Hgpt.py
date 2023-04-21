@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+
+# Importing all necessary modules
 import os
 import subprocess
 from collections import deque
@@ -6,9 +8,7 @@ from api_call import *
 from typing import Dict, List
 import webbrowser
 import pinecone
-
 from dotenv import load_dotenv
-import os
 
 # Load default environment variables (.env)
 load_dotenv()
@@ -29,17 +29,17 @@ if "gpt-4" in OPENAI_API_MODEL.lower():
         + "\033[0m\033[0m"
     )
 
-
 # Goal configuation
 OBJECTIVE = os.getenv("OBJECTIVE", "")
 
-
+# Creating a Deque object to store tasks
 main_task_list = deque([])
 check_task_list = deque([])
-terminal_output = ""   
 
+# A string to store the output of terminal commands
+terminal_output = ""
 
-
+# Printing the objective
 print("\033[94m\033[1m" + "\n*****OBJECTIVE*****\n" + "\033[0m\033[0m")
 print(f"{OBJECTIVE}")
 
@@ -47,6 +47,12 @@ print(f"{OBJECTIVE}")
 def task_projectManager(
     objective: str
 ):
+    """
+    makes the fist tasks to get to the objective
+    """
+    
+    
+    
     global main_task_list
     prompt = f"""
 You are an AI that must complete an objective, but you can only do it through one or more of these four actions:
@@ -68,11 +74,14 @@ With each one of the actions that are necessary you must use this formatting:
     for task in new_tasks:
         separated = task.split(".")
         if separated[0].isnumeric and task.strip()!="":
-            #action_name = separated[1].split(":")[0][1:]
             main_task_list.append({"task_id": separated[0], "task_whole": task})
     
 
 def Execute(task,task_list):
+    
+    # takes a task and decide what it wants to do
+    
+    
     action = task["task_whole"].split(":")[0]
     if "Write File" in action:
         write_file(task,task_list)
@@ -91,6 +100,9 @@ def Execute(task,task_list):
 
 
 def write_file(task,task_list):
+    
+    # writes and creates a file based on the task description
+    
     filename = task["task_whole"].split(":")[1].split(" ")[1]
     if "/" in filename:
         folder_name = filename.split("/")[0]
@@ -106,6 +118,9 @@ def write_file(task,task_list):
     return
     
 def read_file(task):
+    
+    # reads the contents of a file and puts it in a read_memory string
+    
     global read_memory
     filename = task["task_whole"].split(":")[1].split(" ")[1]
     if "." in filename:
@@ -124,6 +139,9 @@ def read_file(task):
 
 
 def run_file(task):
+    
+    # runs a file (for now only .py) and puts the results into the terminal_output string
+    
     global terminal_output
     filename = task["task_whole"].split(":")[1].split(" ")[1]
     print("-Run: "+filename)
@@ -138,8 +156,8 @@ def run_file(task):
         if len(error) > 1:
             print("the python file gave an error: "+result.stderr.decode('utf-8'))
             terminal_output = terminal_output + " "+ filename+ " gave out the error: " +error 
-    elif ".html" in filename:
-        webbrowser.open_new_tab("./Workspace/" +filename)
+    #elif ".html" in filename:
+    #    webbrowser.open_new_tab("./Workspace/" +filename)
     else:
         print("file extension not supported")
         
@@ -147,11 +165,15 @@ def run_file(task):
     return
 
 def research(task,task_list):
+    # it doesn't really do research, it jjust asks the ai a question anbd puts it into read_memory
     global read_memory
     read_memory = read_memory + "this is the answer to the task "+task["task_whole"]+" the answer is: "+ask_ai(task["task_whole"],task_list)
     return
 
 def ask_code(question_text):
+    
+    # provides a code to put in a file that is being written
+    
     global read_memory
 
     prompt = f"""
@@ -165,6 +187,9 @@ def ask_code(question_text):
     return response
 
 def ask_text(question_text):
+    
+    # provides a text to put in a file that is being written
+    
     global read_memory
 
     prompt = f"""
@@ -175,6 +200,9 @@ def ask_text(question_text):
     return openai_call(prompt)
 
 def ask_ai(question_text,task_list):
+    
+    # answers whestions that are mostly releated to the research action
+    
     tasks = ""
     for task in task_list:
         tasks = tasks +"/n"+task["task_whole"]
@@ -186,6 +214,9 @@ def ask_ai(question_text,task_list):
     return openai_call(prompt)
 
 def check(task_list):
+    
+    # makes a list of tasks to check if the objective was completed
+    
     global read_memory
     global terminal_output
     read_memory = ""
@@ -229,6 +260,9 @@ def check(task_list):
     interpret()
         
 def interpret():
+    
+    # based on the check() tasks output decides if the objective was achieved
+    
     output = read_memory +" "+ terminal_output
     prompt = f""" 
     You are an AI tasked with deciding if an objective was completed completely successfully or not.
@@ -245,9 +279,13 @@ def interpret():
     
     if "#@ No" in response:
         fixer(response)
+    #if it outputs yes the loop stops and the program shuts down
         
     
 def fixer(reason):
+    
+    # tries to make a list of actions to fix the objective problems
+    
     global check_task_list
     global read_memory
     global terminal_output
@@ -288,7 +326,7 @@ def fixer(reason):
 print("\033[36m\033[1m" + "\n*****Generating Tasks*****\n" + "\033[0m\033[0m")
 
 
-# Add the first task
+# this part just runs the first task list to get to the objective
 read_memory=""
 task_projectManager(OBJECTIVE)
 print("\033[33m\033[1m" + "\nGenerated Tasks:\n" + "\033[0m\033[0m")

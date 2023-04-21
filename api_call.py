@@ -8,6 +8,13 @@ import openai
 from dotenv import load_dotenv
 import os
 
+"""
+This file just makes the API calls and manages the .env data extraction
+
+"""
+
+
+
 # Load default environment variables (.env)
 load_dotenv()
 
