@@ -28,7 +28,8 @@ Feel free to make suggestiong or to push Upgrades or fixes
 
 ## Example:
 
-The objective is: create a python program that gives the current time as output
+The objective is: "create a python program that gives the current time as output"
+
 since it's a simple task it achieves it really easely and reliably
 ![image](https://user-images.githubusercontent.com/28029553/233624483-d468fab9-c3d2-4ca7-9bf0-db41d44168e7.png)
 
