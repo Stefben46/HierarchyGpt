@@ -28,18 +28,20 @@ Feel free to make suggestiong or to push Upgrades or fixes
 
 ## Example:
 
-The objective is: create a python program that gives the current time as output
+The objective is: "create a python program that gives the current time as output"
+
 since it's a simple task it achieves it really easely and reliably
 ![image](https://user-images.githubusercontent.com/28029553/233624483-d468fab9-c3d2-4ca7-9bf0-db41d44168e7.png)
 
 ## How do i run it?
 1. clone the repository
-2. open the .env.example file and put in your OpenAi key 
+2. open the example.env file and put in your OpenAi key 
 3. in the same file also decide and objective and write it in the OBJECTIVE line
 4. save it and change it's name to just .env
 5. run a Terminal instance in the same directory as the repository and write "python hgpt.py" to run it
 
 ### Credits:
 
-BabyAgi: https://github.com/yoheinakajima/babyagi i basically took their code, stripped it down completely and built it up like i wanted to achieve my objective
-AutoGpt: https://github.com/Significant-Gravitas/Auto-GPT i started with my porject because if wanted an autogpt with a different structure
+BabyAgi: https://github.com/yoheinakajima/babyagi i started from their code, stripped it down completely and built it up like i wanted, to achieve my objective
+
+AutoGpt: https://github.com/Significant-Gravitas/Auto-GPT i started with my poroject because if wanted an autogpt with a different structure
