@@ -21,7 +21,7 @@ Feel free to make suggestiong or to push Upgrades or fixes
 - doesn't cost a lot since it doesn't use many tokens (obviously depending on the task that it needs to do)
 - it's really focused on the objective and doesn't tend to stray away from it
 - it's efficient
-### what are it's Cons?
+### What are it's Cons?
 - it's actions are limited for now (can't run terminal commands or access the web)
 - since it doesn't have an appropriate way of absorbing text efficiently it get's limited by the Token count with big amounts of text
 - since it spins up a new instance of an AI for every time it writes a file, it can have problems of the different AIs not knowing exactly what the other one did (we are talking with 3 or more files but depends on the request)
